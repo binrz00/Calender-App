@@ -11,7 +11,9 @@ const displayDay = document.getElementById("currentDay");
 displayDay.innerHTML = display;
 //grab all the elements for future changes
 const container = document.getElementById("container");
-const buttons = document.querySelectorAll("button");
+const buttons = document.querySelectorAll(".saveBtn");
+//these are the user inputs for the event
+const inputEls = document.querySelectorAll("textarea")
 //buttons have to save input in local storage
 buttons.forEach(function(button){
 button.addEventListener("click",function(){
@@ -24,7 +26,7 @@ button.addEventListener("click",function(){
 const timeBlocks = document.querySelectorAll(".timeBlock-js");
 timeBlocks.forEach(function(item,index){
 //this will set their value to the time in 24 hour format
-item.setAttribute("id",index+=9)
+item.setAttribute("value",index+=9)
 //if statements to change their class to match the time
 item.classList.add("future");
 
