@@ -25,21 +25,19 @@ setInterval(function () {
     }
 }, 1000)
 //input fields (need to change color)
-const timeBlocks = document.querySelectorAll(".description");
-timeBlocks.forEach(function (item, index) {
-    //this will set their value to the time in 24 hour format
-    item.setAttribute("value", index += 9)
+const timeBlocks = document.querySelectorAll(".time-block-js");
+timeBlocks.forEach(function (timeblock, index) {
     //if statements to change their class to match the time
-    if (index < JSON.parse(moment().format("H"))) {
-        item.classList.add("past");
+    if (index +9 < JSON.parse(moment().format("H"))) {
+        timeblock.classList.add("past");
     }
-    if (index == JSON.parse(moment().format("H"))) {
+    if (index +9 == JSON.parse(moment().format("H"))) {
 
-        item.classList.add("present");
+        timeblock.classList.add("present");
     }
 
-    if (index > JSON.parse(moment().format("H"))) {
-        item.classList.add("future");
+    if (index +9 > JSON.parse(moment().format("H"))) {
+        timeblock.classList.add("future");
 
     }
 })
