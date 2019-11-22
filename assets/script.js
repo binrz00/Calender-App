@@ -1,4 +1,5 @@
 let display = moment().format("dddd, MMMM Do YYYY");
+
 let now = moment();
 /*how you set dates:
 let currentYear = moment().set('year', 2019);
@@ -15,21 +16,31 @@ const buttons = document.querySelectorAll(".saveBtn");
 //these are the user inputs for the event
 const inputEls = document.querySelectorAll("textarea")
 //buttons have to save input in local storage
-buttons.forEach(function(button){
-button.addEventListener("click",function(){
-    localStorage.setItem("event","date of the event");
+buttons.forEach(function (button) {
+    button.addEventListener("click", function () {
+        localStorage.setItem("", "date of the event");
+    })
 })
-})
-
-
 //input fields (need to change color)
-const timeBlocks = document.querySelectorAll(".timeBlock-js");
-timeBlocks.forEach(function(item,index){
-//this will set their value to the time in 24 hour format
-item.setAttribute("value",index+=9)
-//if statements to change their class to match the time
-item.classList.add("future");
+const timeBlocks = document.querySelectorAll(".description");
+timeBlocks.forEach(function (item, index) {
+    //this will set their value to the time in 24 hour format
+    item.setAttribute("value", index += 9)
+    //if statements to change their class to match the time
+    if (index < JSON.parse(moment().format("H"))) {
+        item.classList.add("past");
+        console.log(index);
+        console.log(JSON.parse(moment().format("H")));
+    }
+    if (index == JSON.parse(moment().format("H"))) {
+        console.log(index);
+        console.log(JSON.parse(moment().format("H")));
+        item.classList.add("present");
+    }
 
-
-
+    if (index > JSON.parse(moment().format("H"))) {
+        item.classList.add("future");
+        console.log(index);
+        console.log(JSON.parse(moment().format("H")));
+    }
 })
