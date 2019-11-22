@@ -9,16 +9,21 @@ const buttons = document.querySelectorAll(".saveBtn");
 //these are the user inputs for the event
 const inputs = document.querySelectorAll("textarea")
 //buttons have to save input in local storage
-for(let i=0;i<buttons.length;i++){
-    buttons[i].addEventListener("click",function(){
-    const inputEl = inputs[i].value;
-    const prevData = localStorage.getItem("key"+i) || "[]";
-    const data = JSON.parse(prevData);
-    data.push(inputEl);
-    localStorage.setItem("key"+i, JSON.stringify(data));
+for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener("click", function () {
+        const inputEl = inputs[i].value;
+        const prevData = localStorage.getItem("key" + i) || "[]";
+        const data = JSON.parse(prevData);
+        data.push(inputEl);
+        localStorage.setItem("key" + i, JSON.stringify(data));
     })
 }
-
+setInterval(function () {
+    for (let i = 0; i < inputs.length; i++) {
+        inputs[i].innerText = "";
+        inputs[i].innerText = JSON.parse(localStorage.getItem("key" + i) || "[]");
+    }
+}, 1000)
 //input fields (need to change color)
 const timeBlocks = document.querySelectorAll(".description");
 timeBlocks.forEach(function (item, index) {
@@ -35,6 +40,6 @@ timeBlocks.forEach(function (item, index) {
 
     if (index > JSON.parse(moment().format("H"))) {
         item.classList.add("future");
-    
+
     }
 })
